@@ -35,41 +35,35 @@ export default {
       commit(SET_FOOTPRINT_LIST_LOADING)
       let list = {}
       const allCarbonValues = []
-      const countries = await httpRequest('get', 'countries')
-      await Promise.all(countries.map(async({ countryCode }) => {
-        const countryData = await httpRequest('get', `data/${countryCode}/all/EFCpc`)
-        countryData.forEach(
-          ({ 
-            year,
-            countryCode,
-            countryName,
-            carbon 
-          }) => {
-          if(carbon && carbon >= 0) {
-            const carbonFixed = parseFloat(carbon.toFixed(2))
-            allCarbonValues.push(carbonFixed)
-            if(!list[year]) {
-              list[year] = {
-                [countryCode]: {
-                  countryName,
-                  carbon: carbonFixed,
-                  color: colors[countryCode],
-                  countryCode
-                }
-              }
-            } else {
-              list[year][countryCode] = {
+      const countryData = await httpRequest('get', `data/all/all/EFCpc`)
+      countryData.forEach(
+        ({ 
+          year,
+          countryCode,
+          countryName,
+          carbon 
+        }) => {
+        if(carbon && carbon >= 0) {
+          const carbonFixed = parseFloat(carbon.toFixed(2))
+          allCarbonValues.push(carbonFixed)
+          if(!list[year]) {
+            list[year] = {
+              [countryCode]: {
                 countryName,
                 carbon: carbonFixed,
                 color: colors[countryCode],
                 countryCode
               }
             }
+          } else {
+            list[year][countryCode] = {
+              countryName,
+              carbon: carbonFixed,
+              color: colors[countryCode],
+              countryCode
+            }
           }
-        })
-      }))
-      .catch(error => {
-        console.log(error)
+        }
       })
       commit(SET_FOOTPRINT_LIST, list)
       commit(SET_FOOTPRINT_CARBON, allCarbonValues)
