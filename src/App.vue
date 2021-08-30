@@ -1,5 +1,7 @@
 <template>
   <div id="app">
+    <Loading
+      v-if="footprint.loading" />
     <Footprint 
       v-bind="footprint"
       v-if="footprint.loaded"/>
@@ -15,11 +17,13 @@ import {
   GET_FOOTPRINT_LIST
 } from './store/types/types'
 import Footprint from './components/footprint/Footprint.vue'
+import Loading from './components/loading/Loading.vue'
 
 export default {
   name: 'App',
   components: {
-    Footprint
+    Footprint,
+    Loading
   },
   computed: {
     ...mapState({
@@ -40,4 +44,5 @@ export default {
 
   #app
     font-family: Inter
+    height: 100%
 </style>
