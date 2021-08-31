@@ -44,5 +44,5 @@ export default {
 
   #app
     font-family: Inter
-    height: 100%
+    height: 100vh
 </style>

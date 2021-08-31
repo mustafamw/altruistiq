@@ -114,5 +114,19 @@ export default {
       text-align: center
       padding-top: 40px
       padding-bottom: 40px
-    
+@media screen and (max-width: 600px) 
+  .footprint
+    h1
+      font-size: 24px
+      padding: 20px 0px
+    .details
+      display: block
+      padding-bottom: 20px
+      .content
+        .label
+          font-size: 16px
+          line-height: 29px
+        .value
+          font-size: 36px
+          line-height: 48px
 </style>

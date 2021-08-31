@@ -1,13 +1,14 @@
 <template>
   <div class="chart">
     <transition-group name="flip-list" tag="ul">
-      <li class="total">
+      <li 
+        class="total"
+        key="total">
         total
       </li>
       <li
-        v-for="item in items"
-        :key="item.countryCode"
-        :style="``">
+        v-for="(item) in items"
+        :key="item.countryCode">
         <template v-if="item.carbon > 0">
           <div class="name">{{ item.countryName }}</div>
           <div class="graph">
@@ -41,7 +42,7 @@ export default {
   .chart
     background: #FFFFFF
     padding: 40px
-    min-width: 320px
+    min-width: calc(320px - 30px)
     max-width: 837px
     margin: auto
     border: 1px solid #E6E6E6
@@ -63,7 +64,7 @@ export default {
           width: 100%
         div
           &.name
-            width: 15%
+            width: 150px
             padding-right: 30px
           &.graph
             width: 75%
@@ -91,6 +92,19 @@ export default {
           text-align: right
   .flip-list-move 
     transition: transform 1s
+@media screen and (max-width: 600px) 
+  .chart
+    padding-left: 20px
+    padding-right: 20px
+    ul
+      li
+        div
+          &.name
+            width: 100px
+            padding-right: 5px
+          &.name,
+          &.total
+            font-size: 12px
 
 </style>
 
