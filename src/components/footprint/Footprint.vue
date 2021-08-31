@@ -120,9 +120,9 @@ export default {
       font-size: 24px
       padding: 20px 0px
     .details
-      display: block
       padding-bottom: 20px
       .content
+        min-width: 150px
         .label
           font-size: 16px
           line-height: 29px
