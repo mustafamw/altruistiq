@@ -94,8 +94,7 @@ export default {
     transition: transform 1s
 @media screen and (max-width: 600px) 
   .chart
-    padding-left: 20px
-    padding-right: 20px
+    padding: 20px
     ul
       li
         div
